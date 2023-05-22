@@ -22,3 +22,6 @@ while exit != 7:
         print("zakonczyłes program")
     else:
         print("wybrałeś złe rozszerzenie ")
+
+        
+        
