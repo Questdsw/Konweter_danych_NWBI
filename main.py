@@ -2,6 +2,7 @@ import os
 import json
 import xmltodict
 import yaml
+from yaml import SafeLoader
 
 exit = 0
 while exit != 7:
@@ -45,6 +46,12 @@ while exit != 7:
         python_dict = xmltodict.parse(xml_string)
         file = open(plik2, "w")
         yaml.dump(python_dict, file)
+        file.close()
+    elif exit == 5 and os.path.exists(plik) == True:
+        yaml_file = open(plik, "r")
+        python_dict = yaml.load(yaml_file, Loader=SafeLoader)
+        file = open(plik2, "w")
+        json.dump(python_dict, file)
         file.close()
     elif exit ==7:
         print("zakonczyłes program")
