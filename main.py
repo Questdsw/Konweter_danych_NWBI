@@ -25,10 +25,14 @@ while exit != 7:
         xml_file = open(plik2, "w")
         xmltodict.unparse(python_dict, output=xml_file)
         xml_file.close()
-    
+    elif exit == 2 and os.path.exists(plik) == True :
+        file = open(plik,"r")
+        python_dict = json.load(file)
+        yaml_file = yaml.dump(python_dict)
+        file1 = open(plik2, "w")
+        yaml.dump(python_dict, file1)
+        file1.close()
     elif exit ==7:
         print("zakonczyłes program")
     else:
         print("wybrałeś złe rozszerzenie ")
-
-        
