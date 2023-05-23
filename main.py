@@ -32,6 +32,14 @@ while exit != 7:
         file1 = open(plik2, "w")
         yaml.dump(python_dict, file1)
         file1.close()
+    elif exit == 3 and os.path.exists(plik) == True:
+        xml_file = open(plik,"r")
+        xml = xml_file.read()
+        python_dict = xmltodict.parse(xml)
+        file = open(plik2, "w")
+        json.dump(python_dict, file)
+        file.close()
+        
     elif exit ==7:
         print("zakonczyłes program")
     else:
