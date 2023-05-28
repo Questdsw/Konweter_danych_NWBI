@@ -1,1 +1,34 @@
 
+name: Budowanie
+
+on:
+  push:
+    branches:
+      - main  
+jobs:
+  build:
+    name: Budowanie
+    runs-on: windows-latest
+
+    steps:
+    - name: Sklonuj repozytorium
+      uses: actions/checkout@v2
+
+    - name: Skonfiguruj Python
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.11 
+
+    - name: Zainstaluj zależności
+      run: pip install -r installResources.py
+    - name: Buduj plik .exe
+      run: pyinstaller --onefile main.py  
+
+    - name: Zapisz plik .exe jako artefakt
+      run: mv dist/konweter.exe ${{ github.workspace }}/konwerter.exe  
+
+    - name: Udostępnij artefakt
+      uses: actions/upload-artifact@v2
+      with:
+        name: plik-exe
+        path: konwerter.exe  
